@@ -34,8 +34,6 @@ public class ColorWheel extends SubsystemBase {
 
   private final double MOTOR_SPEED = 0.8;
   private String fieldColor        = "";
-  private int changeCount          = 0;
-  private String tempColor         = "";
   private String gameData          = "";
   private boolean raised           = false;
   /**
@@ -51,13 +49,10 @@ public class ColorWheel extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    checkPositionalControl();
     
   }
 
-  public void check() {
-    checkPositionalControl();
-    checkRotationalControl();
-  }
 
   public String getColor() {
     Color detectedColor = m_colorSensor.getColor();
@@ -113,7 +108,6 @@ public class ColorWheel extends SubsystemBase {
   }
  
   public void positionalControl() {
-    changeCount = 0;
     getFieldColor();
     motor.set(MOTOR_SPEED);
     
@@ -129,9 +123,9 @@ public class ColorWheel extends SubsystemBase {
   public void rotationalControl() {
     fieldColor = "";
     motor.set(MOTOR_SPEED);
-    tempColor = getColor();
   }
 
+  /*
   public void checkRotationalControl() {
     if (!tempColor.equals(getColor())) {
       changeCount++;
@@ -141,6 +135,7 @@ public class ColorWheel extends SubsystemBase {
       changeCount = 0;
     }
   }
+  */
 
   public String alternateColor(String color) {
     if (color.equals("Red")) {

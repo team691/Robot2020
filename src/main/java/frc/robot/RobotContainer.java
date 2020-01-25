@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -23,6 +24,9 @@ public class RobotContainer {
   public static final Joystick j = new Joystick(0);
   private final Joystick oj = new Joystick(1);
 
+  private JoystickButton positionalControlButton = new JoystickButton(oj, 3);
+  private JoystickButton rotationalControlButton = new JoystickButton(oj, 5);
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
@@ -40,7 +44,10 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
+
+    positionalControlButton.whenPressed(new PositionalControl());
+    rotationalControlButton.whenHeld(new RotationalControl());
+
   }
 
   

@@ -9,10 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import frc.robot.subsystems.*;
+
 public class PositionalControl extends CommandBase {
   /**
    * Creates a new PositionalControl.
    */
+
+  private ColorWheel cw = new ColorWheel();
+
   public PositionalControl() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,11 +30,13 @@ public class PositionalControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    cw.positionalControl();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    cw.stopColorWheel();
   }
 
   // Returns true when the command should end.
