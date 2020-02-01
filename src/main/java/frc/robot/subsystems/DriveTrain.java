@@ -27,8 +27,9 @@ public class DriveTrain extends SubsystemBase {
   }
 
 
-  public void arcadeDrive(double x, double y) {
-    RobotDrive.arcadeDrive(y, x);
+  public void arcadeDrive(double y, double z) {
+    y = y * 0.6;
+    RobotDrive.arcadeDrive(z, y);
   }
   
 
